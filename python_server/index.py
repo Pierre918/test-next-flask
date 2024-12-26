@@ -2,7 +2,7 @@ from flask import Flask
 import gradio as gr
 app = Flask(__name__)
 
-@app.route("/api/python")
+@app.route("/python_server/python")
 def hello_world():
     
 
