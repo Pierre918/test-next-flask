@@ -1,10 +1,14 @@
-from flask import Flask
+# from flask import Flask
 import gradio as gr
-app = Flask(__name__)
+# app = Flask(__name__)
 
-@app.route("/api/python")
-def hello_world():
-    return "<p>Hello, World!</p>"
+# @app.route("/api/python")
+# def hello_world():
+#     return "<p>Hello, World!</p>"
+
+
+
+
 
 # from flask import Flask
 # import gradio as gr
