@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   outputFileTracingExcludes: {
-    "/api": [".next", "*.cache", "node_modules", "app"],
+    "/api": ["**","*"],
   },
   rewrites: async () => {
     return [
