@@ -1,8 +1,7 @@
 {
     "functions": {
-      "api/**": {
-        "memory":1000,
-        "excludeFiles": "{.next,*.cache,node_modules,public,app}/**"
+      "api/index.py": {
+        "memory":3008
       }
     }
   }
