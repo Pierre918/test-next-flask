@@ -1,33 +1,55 @@
-# from flask import Flask
 import gradio as gr
-# app = Flask(__name__)
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi import Depends, HTTPException, status, FastAPI , Request
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+# import jwt  # PyJWT
+# from .core.security import verify_bearer_token
+# from dotenv import load_dotenv
+# from .routers import router
+# from slowapi import Limiter, _rate_limit_exceeded_handler
+# from slowapi.util import get_remote_address
+# from slowapi.errors import RateLimitExceeded
 
-# @app.route("/api/python")
-# def hello_world():
-#     return "<p>Hello, World!</p>"
+# load_dotenv()
+
+app = FastAPI()
+@app.get("/")
+def read_root():
+    return {"message": "Hello, World!"}
+
+# app.include_router(router)
+
+# limiter = Limiter(key_func=get_remote_address)
+# app.state.limiter = limiter
+# app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["http://localhost:3000","*"], 
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
 
 
+@app.get("/api/health")
+async def root():
+    return {"message": "Welcome to Socio!"}
 
-# from flask import Flask
-# import gradio as gr
-# from flask_cors import CORS
 
-# app = Flask(__name__)
-# CORS(app)
-# @app.route("/python_server/healthchecker")
-# def healthchecker():
-#     # Définir la fonction que l'interface va utiliser
-#     def to_uppercase(text):
-#         return text.upper()
+# @app.get("/protected-route")
+# def protected_route(user_info: dict = Depends(verify_bearer_token)):
+    
+#     return {"message": "Welcome, authenticated user!", "user_info": user_info}
 
-#     # # Créer l'interface Gradio
-#     # iface = gr.Interface(
-#     #     fn=to_uppercase,  # La fonction à utiliser
-#     #     inputs="text",    # Le type d'entrée
-#     #     outputs="text"    # Le type de sortie
-#     # )
-#     # import threading
-#     # threading.Thread(target=iface.launch, kwargs={"server_port": 8080}, daemon=True).start()
-#     return "Gradio interface launched"
+
+# @app.get("/unprotected-route")
+# def unprotected_route():
+#     return {"message": "Welcome, un-authenticated user!"}
+
+
+# @app.get("/api/get_user_id")
+# def hello_fast_api(user_info: dict = Depends(verify_bearer_token)):
+#     print(user_info["sub"])
+#     return {"user_id": user_info["sub"]}
